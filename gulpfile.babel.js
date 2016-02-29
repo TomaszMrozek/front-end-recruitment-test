@@ -109,7 +109,8 @@ gulp.task('scripts', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
-      './app/scripts/main.js'
+      './app/scripts/main.js',
+      './app/scripts/bacon.js'
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
@@ -123,6 +124,27 @@ gulp.task('scripts', () =>
       .pipe($.size({title: 'scripts'}))
       .pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest('dist/scripts'))
+);
+
+gulp.task('libs', () =>
+    gulp.src([
+      // Note: Since we are not using useref in the scripts build pipeline,
+      //       you need to explicitly list your scripts here in the right order
+      //       to be correctly concatenated
+      './app/libs/jquery/dist/jquery.min.js'
+      // Other scripts
+    ])
+      .pipe($.newer('.tmp/libs'))
+      .pipe($.sourcemaps.init())
+      .pipe($.babel())
+      .pipe($.sourcemaps.write())
+      .pipe(gulp.dest('.tmp/libs'))
+      .pipe($.concat('libs.js'))
+      .pipe($.uglify({preserveComments: 'some'}))
+      // Output files
+      .pipe($.size({title: 'libs'}))
+      .pipe($.sourcemaps.write('.'))
+      .pipe(gulp.dest('dist/libs'))
 );
 
 // Scan your HTML for assets & optimize them
@@ -204,7 +226,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['lint', 'html', 'scripts', 'images', 'copy'],
+    ['lint', 'html', 'scripts', 'images', 'copy', 'libs'],
     'generate-service-worker',
     cb
   )

@@ -79,5 +79,15 @@
     });
   }
 
-  // Your custom JavaScript goes here
+  // DIGITAL MIND Scripts
+
+  // TASK 3 - more bacon!
+  var baconButton = $('button:contains("more bacon!")');
+  if (baconButton.get(0)) {
+    baconButton.on('click', function(e) {
+      e.preventDefault();
+      var beaconImage = $('img[alt="Bacon"]:first');
+      beaconImage.clone().appendTo(beaconImage.parent()).addClass('clone');
+    });
+  }
 })();
