@@ -50,6 +50,7 @@
 
     <!-- Your styles -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/form-rounded.css">
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -67,6 +68,7 @@
           <a href="#features" class="mdl-layout__tab">Details</a>
           <a href="#features" class="mdl-layout__tab">Technology</a>
           <a href="#features" class="mdl-layout__tab">FAQ</a>
+          <a href="#checkout" class="mdl-layout__tab">Checkout</a>
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
             <i class="material-icons" role="presentation">add</i>
             <span class="visuallyhidden">Add</span>
@@ -226,7 +228,116 @@
               </p>
             </div>
           </section>
-        </div>
+        </div>      
+        <div class="mdl-layout__tab-panel background-checkout" id="checkout">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--8-col">
+              <h4>Checkout</h4>
+            </div>
+          </section>
+          <form action="#" class="form-rounded" method="post">
+            <section class="section--center mdl-grid mdl-grid--no-spacing">
+              <div class="mdl-cell mdl-cell--12-col">
+                <h5><span class="form-header-dot">1</span>Personal information</h5>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="form-row">
+                  <div class="form-box">
+                    <input type="text" value="John" id="form_first_name" name="first_name">
+                    <label for="form_first_name">First name</label>
+                  </div>
+                  <div class="form-box">
+                    <input type="text" value="Doe" id="form_last_name" name="last_name">
+                    <label for="form_last_name">Last name</label>
+                  </div>
+                </div>
+                <div class="form-row form-row-full">
+                  <div class="form-box">
+                    <input type="text" value="john@doe.com" id="form_email" name="email">
+                    <label for="form_email">Email</label>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-box">
+                    <!-- <input type="hidden" id="form_country"> -->
+                    <div class="form-select">
+                      <select id="form_country" name="country">                      
+                        <option selected>United States</option>
+                        <option>China</option>
+                        <option>Poland</option>
+                        <option>Germany</option>
+                      </select>
+                    </div>
+                    <label for="form_country">Country</label>
+                  </div>
+                  <div class="form-box">
+                    <input type="text" value="00000" id="form_postal_code" name="postal_code">
+                    <label for="form_postal_code">Postal Code</label>
+                  </div>
+                </div>
+                <div class="form-row form-row-full">
+                  <div class="form-box">
+                    <input type="text" value="" id="form_email" name="email">
+                    <label for="form_email">Phone number</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Sidebar -->
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="form-row form-row-full form-sidebar">
+                  <div class="form-box">
+                    <div class="form-container">
+                      <h5>Your order</h5>
+                      <div class="table">
+                        <ul>
+                          <li>Apple watch sport <span class="price">$ 580</span></li>
+                          <li>Modern buckle <span class="price">$ 380</span></li>
+                        </ul>
+                        <ul>
+                          <li>Total purchases <span class="price">$ 960</span></li>
+                          <li>Estimated tax <span class="price">$ 0</span></li>
+                        </ul>
+                        <ul class="total">
+                          <li>Total <span class="price">$ 960</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /Sidebar -->              
+              <div class="mdl-cell mdl-cell--8-col">
+                <h5><span class="form-header-dot">2</span>Payments details <span class="form-icon icon-lock"></span></h5>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="form-row form-row-full">
+                  <div class="form-box">
+                    <input type="text" value="0000 - 0000 - 0000 - 0000" id="form_credit_card" name="credit_card">
+                    <span class="form-icon icon-credit-card"></span>
+                    <label for="form_credit_card">Credit card number</label>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-box">
+                    <input type="text" value="" id="form_security_code" name="security_code">
+                    <span class="form-icon icon-help" id="tooltip-security-code"></span>
+                    <div class="mdl-tooltip" for="tooltip-security-code">You can find security code on the back of Lorem ipsum ;)</div>
+                    <label for="form_security_code">Security code</label>
+                  </div>
+                  <div class="form-box">
+                    <input type="text" value="MM / YY" id="form_expiration_date" name="expiration_date">
+                    <label for="form_expiration_date">Expiration date</label>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="form-row form-row-full">
+                   <button class="mdl-button mdl-js-button mdl-js-ripple-effect submit"><span class="info">Complete purchase<span></button>
+                </div>
+              </div>              
+            </section>
+          </form>
+        </div> 
         <footer class="mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
             <div class="mdl-mega-footer--drop-down-section">

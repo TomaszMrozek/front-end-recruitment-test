@@ -1,0 +1,259 @@
+//config
+$form-dot-size: 21px;
+$form-dot-margin: 10px;
+$form-indent-size: $form-dot-size + $form-dot-margin;
+$form-grid-margin: 12px;
+$form-box-vpadding: 12px;
+$form-box-hpadding: 12px;
+$form-font-size-small: 12px;
+$form-font-size: 16px;
+
+@mixin prefixes($property, $value) {
+  #{$property}: $value;
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+}
+
+//overwriting checkout background without using important ;)
+.mdl-demo .mdl-layout__tab-panel#checkout{
+  background-color: #f2f2f2;
+}
+
+.form-icon {
+  background: url("../images/icons.png") no-repeat;
+  display: inline-block;
+  vertical-align:middle;
+  
+  &.icon-lock {
+    width: 12px;
+    height: 15px;
+    background-position: -52px 0;
+  }
+  
+  &.icon-credit-card {
+    width: 41px;
+    height: 25px;
+    background-position: -64px 0;
+  }
+  
+  &.icon-help {
+    width: 22px;
+    height: 21px;
+    background-position: 0 0;
+  }
+}
+
+.form-rounded {  
+  padding: 15px 0 60px 0;
+  
+  h5 {  
+    font-size: $form-font-size-small;
+    line-height: 15px;
+    padding: 0;
+    margin: 20px 0 25px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-right: $form-indent-size;
+    
+    .form-header-dot {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      @include prefixes(border-radius,10px);
+      width: $form-dot-size;
+      height: $form-dot-size;
+      line-height: $form-dot-size;
+      text-align: center;
+      margin-right: $form-dot-margin;
+    }
+    
+    .form-icon {
+      margin-left: 10px;
+    }
+    
+  }
+
+  .form-row{  
+    padding-left: $form-indent-size;
+    overflow: auto;
+    
+    &.form-row-full {  
+      .form-box {
+        width: calc(100% - #{$form-grid-margin + $form-box-hpadding * 2});
+      }
+    }
+    
+    .form-box {        
+      width: calc(50% - #{$form-grid-margin + $form-box-hpadding * 2});
+      float: left;
+      min-height: 20px;
+      background: #fff;
+      margin: 0 $form-grid-margin $form-grid-margin 0;
+      position: relative;
+      padding: #{$form-box-vpadding + 18} $form-box-hpadding $form-box-vpadding $form-box-hpadding; //added top space for label
+      @include prefixes(border-radius,4px);
+      border-bottom: 2px solid #dcdcdc;
+
+      @media screen and (max-width: 759px) {
+        width: calc(100% - #{$form-grid-margin + $form-box-hpadding * 2});
+      }
+
+      .form-icon{
+        position: absolute;
+        top: 20px;
+        right: 10px;        
+      }
+
+      input {      
+        border: 0;
+        color: #a3a3a3;
+        font-size: $form-font-size;
+        line-height: 20px;
+        height: 20px;
+        padding: 0;
+        width: 100%;
+        
+        &:focus {
+          color: #000;
+          outline: none;
+        }
+      }
+      
+      .form-select {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        @include prefixes(border-radius,3px);
+        overflow: hidden;
+        background-color: #fff;
+        outline: none;
+
+        &:before{
+          position: absolute;
+          content: "";
+          width: 14px;
+          height: 14px;
+          background: #fff url("../images/icons.png") no-repeat -38px 0;
+          right: 12px;
+          bottom: 12px;
+        }
+        
+        select {
+          @extend input;
+          cursor: pointer;
+          width: 100%;
+          background-color: transparent;
+          background-image: none;
+          @include prefixes(appearance,none);
+          
+          &:focus {
+            color: #000;
+            outline: none;
+          }
+          
+          &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+          } 
+        }
+      }
+            
+      label {
+        position: absolute;
+        top: 11px;
+        left: 12px;
+        color: #515356;
+        font-size: $form-font-size-small;
+        line-height: $form-font-size-small;
+        white-space: nowrap;
+        font-weight: bold;
+        text-transform: capitalize;
+        
+        &.error{
+          color: #dd0000;
+        }
+      }
+    }
+    
+    .submit {
+      border: 0;
+      width: calc(100% - #{$form-grid-margin});
+      @include prefixes(border-radius,4px);
+      background: #6bd400;
+      height: 52px;
+    
+      .info {
+        display: block;
+        padding: 20px 0;
+        text-align: center;
+        color: #fff;
+        font-size: $form-font-size-small;
+        line-height: $form-font-size-small;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+    
+    &.form-sidebar {
+  
+      @media screen and (min-width: 840px) {
+        padding-left: 0;
+        width: 100%;
+      }
+      
+      .form-box{      
+        padding: 4px;
+        width: calc(100% - 8px - #{$form-grid-margin});
+        margin-right: 0;
+        
+        .form-container {         
+          border: 2px dashed #ebebeb;
+          padding: 15px 12px;
+          @include prefixes(border-radius,4px);
+          
+          h5 {
+            margin: 0 0 16px 0;
+          }
+          
+          .table {          
+            ul {
+              padding: 0;
+              margin: 0 0 10px 0;
+              
+              &:not(:first-child) {
+                border-top: 1px dashed #ebebeb;
+              }
+              
+              &:last-child{
+                border-top: 2px dashed #ebebeb;
+                padding-top: 7px;
+              }
+              
+              &.total {
+                li {
+                  font-weight: bold;
+                }
+                .price {
+                  font-size: 23px;
+                }
+              }
+  
+              li {
+                list-style: none;
+                padding: 6px 0;
+                margin: 0;
+                font-size: $form-font-size-small;
+  
+                .price {
+                  float: right;
+                }
+              }
+            }//ul
+          }//.table
+        }//.form-container
+      }//.form-box
+    }//.form-sidebar    
+  }  
+}//.form-rounded
