@@ -235,7 +235,7 @@
               <h4>Checkout</h4>
             </div>
           </section>
-          <form action="#" class="form-rounded" method="post">
+          <form action="#" class="form-rounded">
             <section class="section--center mdl-grid mdl-grid--no-spacing">
               <div class="mdl-cell mdl-cell--12-col">
                 <h5><span class="form-header-dot">1</span>Personal information</h5>
@@ -243,17 +243,17 @@
               <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                 <div class="form-row">
                   <div class="form-box">
-                    <input type="text" value="John" id="form_first_name" name="first_name">
+                    <input type="text" value="" id="form_first_name" name="first_name" class="required" data-validate="string">
                     <label for="form_first_name">First name</label>
                   </div>
                   <div class="form-box">
-                    <input type="text" value="Doe" id="form_last_name" name="last_name">
+                    <input type="text" value="" id="form_last_name" name="last_name" class="required" data-validate="string">
                     <label for="form_last_name">Last name</label>
                   </div>
                 </div>
                 <div class="form-row form-row-full">
                   <div class="form-box">
-                    <input type="text" value="john@doe.com" id="form_email" name="email">
+                    <input type="text" value="" id="form_email" name="email" class="required" data-validate="email">
                     <label for="form_email">Email</label>
                   </div>
                 </div>
@@ -261,8 +261,9 @@
                   <div class="form-box">
                     <!-- <input type="hidden" id="form_country"> -->
                     <div class="form-select">
-                      <select id="form_country" name="country">                      
-                        <option selected>United States</option>
+                      <select id="form_country" name="country" class="required" data-validate="string">                      
+                        <option>-- select country --</option>
+                        <option>United States</option>
                         <option>China</option>
                         <option>Poland</option>
                         <option>Germany</option>
@@ -271,14 +272,14 @@
                     <label for="form_country">Country</label>
                   </div>
                   <div class="form-box">
-                    <input type="text" value="00000" id="form_postal_code" name="postal_code">
+                    <input type="text" value="00000" id="form_postal_code" name="postal_code" class="required" data-validate="postal_code">
                     <label for="form_postal_code">Postal Code</label>
                   </div>
                 </div>
                 <div class="form-row form-row-full">
                   <div class="form-box">
-                    <input type="text" value="" id="form_email" name="email">
-                    <label for="form_email">Phone number</label>
+                    <input type="text" value="" id="form_phone_number" name="phone_number" class="required" data-validate="string">
+                    <label for="form_phone_number">Phone number</label>
                   </div>
                 </div>
               </div>
@@ -312,20 +313,20 @@
               <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                 <div class="form-row form-row-full">
                   <div class="form-box">
-                    <input type="text" value="0000 - 0000 - 0000 - 0000" id="form_credit_card" name="credit_card">
+                    <input type="text" value="0000 - 0000 - 0000 - 0000" id="form_credit_card" name="credit_card" class="required" data-validate="credit_card">
                     <span class="form-icon icon-credit-card"></span>
                     <label for="form_credit_card">Credit card number</label>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-box">
-                    <input type="text" value="" id="form_security_code" name="security_code">
+                    <input type="password" value="" id="form_security_code" name="security_code" class="required" data-validate="card_security_code">
                     <span class="form-icon icon-help" id="tooltip-security-code"></span>
                     <div class="mdl-tooltip" for="tooltip-security-code">You can find security code on the back of Lorem ipsum ;)</div>
                     <label for="form_security_code">Security code</label>
                   </div>
                   <div class="form-box">
-                    <input type="text" value="MM / YY" id="form_expiration_date" name="expiration_date">
+                    <input type="text" value="MM / YY" id="form_expiration_date" name="expiration_date" class="required" data-validate="card_expiration_date">
                     <label for="form_expiration_date">Expiration date</label>
                   </div>
                 </div>

@@ -256,3 +256,48 @@
 .form-rounded .form-row.form-sidebar .form-box .form-container .table ul li .price {
   float: right;
 }
+
+.ui-modal {
+  background: #fff;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -25%;
+  margin-top: -25%;
+  text-align: center;
+  z-index: 100;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+@media screen and (max-width: 839px) {
+  .ui-modal {
+    width: 80%;
+    margin-left: -40%;
+  }
+}
+
+.ui-modal .ui-modal-container {
+  padding: 40px;
+}
+
+.ui-modal .ui-modal-container .title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ui-modal .ui-modal-container .close {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: #6bd400;
+  color: #fff;
+}

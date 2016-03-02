@@ -90,4 +90,153 @@
       beaconImage.clone().appendTo(beaconImage.parent()).addClass('clone');
     });
   }
+
+  // TASK 5 - checkout simple validation
+  $.fn.fieldValidate = function(action) {
+    if (typeof action === 'undefined') {
+      action = 'single';
+    }
+    /**
+    * function which parses and eventually returns corrected single fields values
+    * @param {string} input - selected form element
+    * @param {string} inputType - validate types
+    * @return {Boolean|Array} Checks validation or returns corrected value
+    */
+    function validateChecker(input, inputType) {
+      var inputValue = input.val();
+      if (!inputValue || (inputValue && inputValue === input.data('default'))) {
+        return false;
+      }
+      if (typeof inputType === 'undefined') {
+        inputType = 'string';
+      }
+      var match;
+      var result;
+      switch (inputType) {
+        case 'email':
+          match = /\S+@\S+\.\S+/;
+          result = match.test(inputValue);
+          return result;
+        case 'credit_card':
+          inputValue = inputValue.replace(/-|\s-\s/g, ' ');
+          match = /(\d{4}\s){3}\d{4}/;
+          result = match.test(inputValue);
+          result = result === false ? false : match.exec(inputValue);
+          return result;
+        case 'card_expiration_date':
+          inputValue = inputValue.replace(/\s\/\s/g, '/');
+          match = /\d{2}\/\d{2}/;
+          result = match.test(inputValue);
+          result = result === false ? false : match.exec(inputValue);
+          return result;
+        case 'card_security_code':
+          match = /\d{3}/;
+          return match.test(inputValue);
+        case 'postal_code':
+          inputValue = inputValue.replace(/-|\s-\s/g, '');
+          match = /\d{5}/;
+          result = match.test(inputValue);
+          result = result === false ? false : match.exec(inputValue);
+          return result;
+        default:
+          return true;
+      }
+    }
+
+    /**
+    * simple field validate using validateChecker
+    * @param {object} input - selected form element
+    * @return {Boolean} Checks validation
+    */
+    function validateField(input) {
+      var validateResult = validateChecker(input, input.data('validate'));
+      var result;
+      if (validateResult) {
+        if (typeof validateResult === 'object' && validateResult[0]) {
+          input.val(validateResult[0]);
+        }
+        result = true;
+      } else {
+        result = false;
+      }
+      return result;
+    }
+
+    if (action === 'single') {
+      return this.each(function() {
+        if (!$(this).data('default')) {
+          $(this).data('default', $(this).val());
+        }
+        var targerLabel = $('label[for=' + $(this).attr('id') + ']');
+        $(this).on('focus', function() {
+          targerLabel.removeClass('error');
+          if ($(this).data('default') &&
+          $(this).val() === $(this).data('default')) {
+            $(this).val('');
+          }
+        }).on('blur', function() {
+          if ($(this).data('default') && $(this).val() === '') {
+            $(this).val($(this).data('default'));
+          }
+          if (!validateField($(this))) {
+            targerLabel.addClass('error');
+          }
+        });
+      });
+    } else if (action === 'all') {
+      var countErrors = 0;
+      this.each(function() {
+        var targerLabel = $('label[for=' + $(this).attr('id') + ']')
+        .removeClass('error');
+        if (!validateField($(this))) {
+          targerLabel.addClass('error');
+          countErrors++;
+        }
+      });
+      return countErrors;
+    }
+  };
+  /**
+    * create simple modal
+    * @param {String} title - title for modal
+    * @param {String} description - description for modal (really!) :D
+    * @param {String} closeButtonString - text on modal closing button (default: 'OK')
+    */
+  function uiModal(title, description, closeButtonString) {
+    if (typeof closeButtonString === 'undefined') {
+      closeButtonString = 'OK';
+    }
+    $('.ui-modal').stop().clearQueue().slideUp(300, function() {
+      $(this).remove();
+    });
+    var modal = $('<div class="ui-modal">' +
+      '<div class="ui-modal-container">' +
+        '<div class="title">' + title + '</div>' +
+          '<p>' + description + '</p>' +
+          '<div class="buttons"></div>' +
+        '</div>' +
+      '</div>');
+    var button = $('<button class="mdl-button mdl-js-button ' +
+      'mdl-js-ripple-effect close">' + closeButtonString +
+      '</button>');
+    $('.buttons', modal).append(button);
+    modal.hide();
+    $('body').append(modal);
+    modal.show(200);
+    button.on('click', function(event) {
+      event.preventDefault();
+      $('.ui-modal').stop().clearQueue().hide(300, function() {
+        $(this).remove();
+      });
+    });
+  }
+
+  // form in action
+  $('#checkout form .required').fieldValidate();
+  $('#checkout form').on('submit', function(event) {
+    event.preventDefault();
+    if ($('#checkout form .required').fieldValidate('all') === 0) {
+      uiModal('Thank you', 'Your form was sent');
+    }
+  });
 })();

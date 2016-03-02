@@ -257,3 +257,38 @@ $form-font-size: 16px;
     }//.form-sidebar    
   }  
 }//.form-rounded
+
+.ui-modal{
+  background: #fff;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -25%;
+  margin-top:-25%;
+  text-align: center;
+  z-index: 100;
+  @include prefixes(border-radius,4px);
+  
+  @media screen and (max-width: 839px) {
+    width: 80%;
+    margin-left: -40%;
+  }
+  
+  .ui-modal-container {
+    padding: 40px;
+    
+    .title {
+      font-size: $form-font-size;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .close {
+      @include prefixes(border-radius,4px);
+      background: #6bd400;
+      color: #fff;
+    }
+  }
+}

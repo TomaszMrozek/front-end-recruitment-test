@@ -104,6 +104,7 @@ gulp.task('styles', () => {
 // Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
 // to enables ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
 // `.babelrc` file.
+var gutil = require('gulp-util');
 gulp.task('scripts', () =>
     gulp.src([
       // Note: Since we are not using useref in the scripts build pipeline,
@@ -119,7 +120,7 @@ gulp.task('scripts', () =>
       .pipe($.sourcemaps.write())
       .pipe(gulp.dest('.tmp/scripts'))
       .pipe($.concat('main.min.js'))
-      .pipe($.uglify({preserveComments: 'some'}))
+      .pipe($.uglify({preserveComments: 'some'}).on('error', gutil.log))
       // Output files
       .pipe($.size({title: 'scripts'}))
       .pipe($.sourcemaps.write('.'))
